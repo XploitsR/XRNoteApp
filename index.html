@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>::XRNoteApp</title>
+    <link rel="shortcut icon" href="assets/ico/xrnoteapp-32.ico">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+
+    <style>
+        * {
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --_white: #ffffff;
+            --_white_a6: #ffffffa6;
+            --_100_per: 100%;
+            --_-100_per: -100%;
+            --_10_px: 10px;
+        }
+
+        ._w_n::-webkit-scrollbar,
+        ._npo_b::-webkit-scrollbar {
+            width: var(--_10_px);
+            border-radius: 5px;
+        }
+
+        ._w_n::-webkit-scrollbar-thumb,
+        ._npo_b::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #0d2fd8;
+            cursor: pointer;
+        }
+
+        ._w_n._dkm::-webkit-scrollbar-thumb,
+        ._npo_b._dkm::-webkit-scrollbar-thumb {
+            background-color: #e0e2e8;
+        }
+
+        ._w_n::placeholder {
+            color: var(--_white_a6);
+        }
+
+        ._w_n::-moz-placeholder {
+            color: var(--_white_a6);
+        }
+
+        ._w_n:-ms-input-placeholder {
+            color: var(--_white_a6);
+        }
+
+        .material-icons:active,
+        ._npo_no:active {
+            transition: all .3s ease-in-out;
+            opacity: 1;
+            background-color: #0a0a0a46;
+        }
+
+        @font-face {
+            font-family: "MuseoModerno";
+            src: url('assets/fonts/MuseoModerno-Regular.ttf');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            color: var(--_white);
+            font-family: 'MuseoModerno', cursive;
+            background-color: #2316d3;
+            overflow-x: hidden;
+            display: none;
+            animation: ripple 5s;
+        }
+
+        ._bd {
+            display: block;
+        }
+
+        .material-icons {
+            color: var(--_white);
+            padding: 3px;
+            border-radius: 50%;
+        }
+
+        ._hb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 40%;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 3px;
+            background-color: #000a96;
+            overflow: hidden;
+        }
+
+        ._fa {
+            position: fixed;
+            top: -50px;
+            width: 40%;
+            padding: 10px;
+            background-color: #08065d;
+            transition: all .5s ease-in-out;
+        }
+
+        .sld {
+            top: 0;
+        }
+
+        .slu {
+            top: -50px;
+        }
+
+        ._nc {
+            display: flex;
+            width: var(--_100_per);
+            height: 90%;
+        }
+
+        ._npo {
+            width: var(--_100_per);
+            margin-bottom: -20px;
+            transition: margin-left .5s ease-in-out;
+        }
+
+        ._npt {
+            width: var(--_100_per);
+            margin-right: var(--_-100_per);
+            margin-bottom: -20px;
+        }
+
+        ._npo_h {
+            display: flex;
+            background-color: #2316dd;
+        }
+
+        ._npo_b {
+            height: var(--_100_per);
+            padding: var(--_10_px);
+            background-color: #2316bf;
+        }
+
+        ._npo>._npo_b {
+            overflow-y: auto;
+        }
+
+        ._npo_no {
+            position: relative;
+            display: flex;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #08065d52;
+            user-select: none;
+        }
+
+        ._npo_cn {
+            width: var(--_100_per);
+            height: var(--_100_per);
+        }
+
+        ._npo_c {
+            color: var(--_white_a6);
+            font-size: 12px;
+        }
+
+        ._npo_d {
+            position: absolute;
+            right: 0;
+            margin-right: 5px;
+            z-index: 10;
+        }
+
+        ._npo_l,
+        ._npo_n {
+            width: 50%;
+            /* box-shadow: inset rgba(255, 255, 255, 0.5) 1px 1px 9px 0px; */
+            padding: var(--_10_px);
+            user-select: none;
+        }
+
+        ._npo_n {
+            text-align: right;
+            background-color: #2316bf;
+        }
+
+        ._npo_l {
+            font-size: 16px;
+        }
+
+        ._npo_n>*,
+        ._b_n,
+        ._npo_no {
+            cursor: pointer;
+            /* box-shadow: inset rgba(255, 255, 255, 0.5) 1px 1px 9px 0px; */
+        }
+
+        ._s_p_f {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            background: transparent;
+            display: none;
+        }
+
+        ._s_p_b {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 40%;
+            margin: auto;
+        }
+
+        ._s_p {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            background-color: #191ba0;
+            animation: ripple .3s;
+        }
+
+        .ssp {
+            display: block;
+            opacity: 1;
+        }
+
+        ._s_p_o {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        ._s_p_o_t,
+        ._s_p_o_of {
+            width: 50%;
+        }
+
+        ._s_p_o_of {
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        ._npo.mgl {
+            margin-left: var(--_-100_per);
+        }
+
+        ._npt.mgl {
+            margin-right: var(--_-100_per);
+        }
+
+        ._w_n {
+            position: relative;
+            width: var(--_100_per);
+            height: var(--_100_per);
+            padding: var(--_10_px);
+            font-family: 'MuseoModerno', cursive;
+            font-size: 18px;
+            color: var(--_white);
+            white-space: pre-wrap;
+            border: none;
+            overflow-x: hidden;
+            background: transparent;
+        }
+
+        ._d_n {
+            font-size: 20px;
+            margin-top: 5px;
+            z-index: 10;
+        }
+
+        body._dkm {
+            background-color: #131313;
+        }
+
+        ._npo_no._dkm {
+            color: #ffffff;
+            background-color: #101010;
+        }
+
+        ._hb._dkm,
+        ._npo_b._dkm {
+            background-color: #000000;
+        }
+
+        ._npo_h._dkm {
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        ._npo_n._dkm {
+            background-color: #000000;
+        }
+
+        .material-icons._dkm {
+            color: #000000;
+        }
+
+        ._s_p._dkm {
+            background-color: #ffffff;
+        }
+
+        ._r_s_bg._dkm {
+            background-color: #000000;
+        }
+
+        ._r_h._dkm {
+            background-color: #ffffff;
+        }
+
+        ._fa._dkm {
+            background-color: #101010;
+        }
+
+        ._abc._dkm {
+            background-color: #101010;
+        }
+
+        ._r_s_bg {
+            height: 16px;
+            width: 36px;
+            margin: 3px;
+            position: relative;
+            background: rgb(32, 60, 193);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.25s ease 0s;
+        }
+
+        /*Handling settings menu*/
+        ._r_h {
+            height: 22px;
+            width: 22px;
+            background: rgb(14, 43, 190);
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 50%;
+            position: absolute;
+            transform: translateX(20px);
+            top: 0;
+            outline: 0;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 1px;
+            border: 0;
+            transition: background-color 0.25s ease 0s, transform 0.25s ease 0s, box-shadow 0.15s ease 0s;
+        }
+
+        ._r_s_bg._chkf {
+            background-color: rgba(136, 136, 136);
+            transition: background 0.25s ease 0s;
+        }
+
+        ._r_h._chkf {
+            transform: translateX(0);
+            background-color: rgba(255, 255, 255);
+            transition: background-color 0.25s ease 0s, transform 0.25s ease 0s, box-shadow 0.15s ease 0s;
+        }
+
+        ._abc_w {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            display: none;
+        }
+
+        ._abc {
+            width: 300px;
+            height: fit-content;
+            margin: auto;
+            padding: var(--_10_px);
+            transform: translate(0, var(--_100_per));
+            border-radius: 5px;
+            text-align: center;
+            background-color: #2316d3;
+            box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        ._abc_b {
+            position: relative;
+            top: 30%;
+        }
+
+        /* end settings menu */
+
+        @media only screen and (max-width: 768px) {
+
+            ._hb,
+            ._fa,
+            ._s_p_b {
+                width: var(--_100_per);
+            }
+
+            ._abc {
+                width: 70%;
+            }
+        }
+
+        @keyframes ripple {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="_main">
+    <div class="_abc_w">
+        <div class="_abc">
+            <div class="_abc_b">
+                <div class="_abc_t">::XRNoteApp</div>
+                <div class="_abc_v">v1.0.1</div>
+                <div class="_abc_d">
+                    Exceptional web note app<br /> developed by<br />
+                    XploitsR Authors<br />
+                    <a href="mail:xploitsr@gmail.com"
+                        style="color: #ffffff;text-decoration: none;">xploitsr@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_hb">
+        <div class="_fa"></div>
+        <div class="_nc">
+            <div class="_np _npo">
+                <div class="_npo_h">
+                    <div class="_npo_l">
+                        ::XRNoteApp
+                    </div>
+                    <div class="_npo_n">
+                        <span class="material-icons _a_n ico" title="Add Note">add</span>
+                        <span class="material-icons _s_t" title="Settings">more_vert</span>
+                        <div class="_s_p_f">
+                            <div class="_s_p_b">
+                                <div class="_s_p">
+                                    <div class="_s_p_o">
+                                        <div class="_s_p_o_t">Dark Mode</div>
+                                        <div class="_s_p_o_of">
+                                            <div
+                                                style="position: relative; display: inline-block; text-align: left; opacity: 1; direction: ltr; border-radius: 8px; transition: opacity 0.25s ease 0s; touch-action: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none;">
+                                                <div class="_r_s_bg _chkf">
+                                                    <div
+                                                        style="height: 16px; width: 18px; position: relative; opacity: 1; pointer-events: none; transition: opacity 0.25s ease 0s;">
+                                                    </div>
+                                                </div>
+                                                <div class="_r_h _chkf"></div>
+                                                <input type="checkbox" role="switch"
+                                                    style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="_s_p_o">
+                                        <div class="_s_p_o_t _rt">XTheme</div>
+                                    </div>
+                                    <div class="_s_p_o">
+                                        <div class="_s_p_o_t _ab">About</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style class="_stl"></style>
+                <div class="_npo_b"></div>
+            </div>
+            <div class="_np _npt">
+                <div class="_npo_h">
+                    <div class="_npo_l">
+                        <span class="material-icons _b_n" title="Back">arrow_back</span>
+                    </div>
+                    <div class="_npo_n">
+                        <span class="material-icons _e_n" title="Edit Note">edit</span>
+                        <span class="material-icons _s_n" title="Save Note">save</span>
+                    </div>
+                </div>
+                <div class="_npo_b">
+                    <textarea class="_w_n" placeholder="write here..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
