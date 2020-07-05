@@ -95,7 +95,7 @@
                     t = _0x545();
                     gM = Math.max(aOc[0], aOc[1], aOc[2]);
 
-                    // ._bd,npo_no,_s_p
+                    // .F,npo_no,_s_p
                     _0x274.call([t[5], aOc]);
                     _0x274.call([t[0], aOc]);
                     _0x274.call([t[7], aOc]);
@@ -360,7 +360,7 @@
                             '<span class="material-icons _d_n" title="Delete">close</span>' +
                             '</div>';
                         ce.classList.add('_npo_no');
-                        (qS('._bd').classList.contains('_dkm')) ? ce.classList.add('_dkm'): null;
+                        (qS('._main').classList.contains('_dkm')) ? ce.classList.add('_dkm'): null;
                         ce.innerHTML = dd;
                         qS('._npo_b').appendChild(ce);
                         qSa('._d_n')[n].onclick = function (ev) {
