@@ -190,7 +190,7 @@
                             _0x155.call(['_0x215', lra[0].children[1].children[0], 'spellcheck', 'false']);
                         } else if (undefined !== at[2] && at[2][0] == 'bk') {
                             setTimeout(function () {
-                                at[0].children[1].children[0].style.cursor = "not-allowed";
+                                qS('._w_n').style.cursor = "not-allowed";
                             }, 500);
                             _0x37();
                         } else {
