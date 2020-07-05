@@ -335,9 +335,9 @@
                 if (!qS('body').classList.contains('_dkm')) {
                     setTimeout(function () {
                         aOc = [
-                            Math.floor(Math.random() * 255),
-                            Math.floor(Math.random() * 255),
-                            Math.floor(Math.random() * 255)
+                            Math.floor(Math.random() * 256),
+                            Math.floor(Math.random() * 256),
+                            Math.floor(Math.random() * 256)
                         ], _0x24(), _0x55();
                     }, 100);
                 }
